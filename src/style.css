@@ -1,0 +1,126 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+div#content {
+  background-color: #d1d5db;
+}
+
+header {
+  border-bottom: 3px solid #22c55e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  height: 10vh;
+}
+
+header > div:nth-child(2) > div:first-child {
+  margin-bottom: -6px;
+  color: #22c55e;
+}
+
+header > div:nth-child(2) {
+  display: flex;
+  align-items: center;
+}
+
+header > div > p {
+  font-size: 3rem;
+  font-family: "Noto Sans Display", sans-serif;
+  font-weight: 700;
+}
+
+header > div > p:last-child {
+  color: #22c55e;
+}
+
+.toggle {
+  margin-bottom: 25px;
+}
+
+label {
+  width: 65px;
+  height: 35px;
+  position: relative;
+  display: block;
+  background-color: #ffffff;
+  border-radius: 200px;
+  border: 3px solid #22c55e;
+  cursor: pointer;
+  transition: 1s;
+}
+
+label:after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 4px;
+  left: 35px;
+  background: #22c55e;
+  border: #22c55e;
+  border-radius: 180px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+input:checked + label {
+  background: #242424;
+}
+
+input:checked + label:after {
+  right: 100px;
+  transform: translateX(-140%);
+  background: linear-gradient(180deg, #777, #3a3a3a);
+}
+
+/* label:active::after {
+  width: 50px;
+} */
+
+#content {
+  background: #000000;
+  z-index: -1;
+  transition: 0.3s;
+}
+
+input:checked + label + #content {
+  background: #242424;
+}
+
+label svg {
+  position: absolute;
+  width: 120px;
+  top: 2px;
+  z-index: 100;
+}
+
+label svg.sun {
+  left: -42px;
+  fill: #fbbf24;
+  transition: 0.3s;
+}
+
+label svg.moon {
+  top: 5px;
+  left: -18px;
+  fill: #089cff;
+  transition: 0.3s;
+  display: none;
+}
+
+input:checked + label svg.sun {
+  display: none;
+}
+
+input:checked + label svg.moon {
+  display: block;
+}
