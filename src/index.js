@@ -3,6 +3,7 @@ import "./style.css";
 
 const container = document.getElementById("content");
 
+// HEADER ELEMENTS
 const navBar = document.createElement("header");
 const hamburgerIcon = document.createElement("div");
 hamburgerIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -33,4 +34,85 @@ label.innerHTML = `<svg class="sun" xmlns="http://www.w3.org/2000/svg" fill="#00
 label.setAttribute("for", "darkmode-toggle");
 screenMode.append(input, label);
 navBar.append(hamburgerIcon, pageTitle, screenMode);
-container.append(navBar);
+
+// BODY ELEMENTS
+const bodySection = document.createElement("section");
+bodySection.classList.add("body-section");
+
+const sidebar = document.createElement("div");
+sidebar.classList.add("sidebar");
+
+// SIDEBAR: HOME
+const sidebarHomeContainer = document.createElement("section");
+sidebarHomeContainer.classList.add("sidebar-home");
+
+const sidebarHomeHeader = document.createElement("h1");
+sidebarHomeHeader.innerHTML = "Home";
+
+const sideBarTasks = document.createElement("div");
+sideBarTasks.classList.add("sidebar-tasks");
+
+const allTasksContainer = document.createElement("div");
+const allTasksImg = document.createElement("img");
+allTasksImg.setAttribute("src", "../images/inbox.png");
+const allTasks = document.createElement("p");
+allTasks.innerHTML = "All Tasks";
+allTasksContainer.append(allTasksImg, allTasks);
+
+const todayTasksContainer = document.createElement("div");
+const todayTasksImg = document.createElement("img");
+todayTasksImg.setAttribute("src", "../images/today-arrow.png");
+const todayTasks = document.createElement("p");
+todayTasks.innerHTML = "Today";
+todayTasksContainer.append(todayTasksImg, todayTasks);
+
+const next7DaysTasksContainer = document.createElement("div");
+const next7DaysTasksImg = document.createElement("img");
+next7DaysTasksImg.setAttribute("src", "../images/date-number.png");
+const next7DaysTasks = document.createElement("p");
+next7DaysTasks.innerHTML = "Next 7 Days";
+next7DaysTasksContainer.append(next7DaysTasksImg, next7DaysTasks);
+
+const importantTasksContainer = document.createElement("div");
+const importantTasksImg = document.createElement("img");
+importantTasksImg.setAttribute("src", "../images/star.png");
+const importantTasks = document.createElement("p");
+importantTasks.innerHTML = "Important";
+importantTasksContainer.append(importantTasksImg, importantTasks);
+
+// SIDEBAR: PROJECTS
+const sidebarProjectsContainer = document.createElement("section");
+sidebarProjectsContainer.classList.add("sidebar-projects");
+
+const sidebarProjectsHeader = document.createElement("h1");
+sidebarProjectsHeader.innerHTML = "Projects";
+
+const newProjects = document.createElement("div");
+newProjects.classList.add("new-projects");
+
+const addProjectButton = document.createElement("div");
+addProjectButton.classList.add("add-project");
+addProjectButton.innerHTML = "Add Project";
+const add = document.createElement("div");
+add.innerHTML = `<svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Edit / Add_Plus_Circle"> <path id="Vector" d="M8 12H12M12 12H16M12 12V16M12 12V8M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg>`;
+addProjectButton.append(add);
+
+bodySection.append(sidebar);
+sidebar.append(sidebarHomeContainer, sidebarProjectsContainer);
+sidebarHomeContainer.append(sidebarHomeHeader, sideBarTasks);
+sidebarProjectsContainer.append(sidebarProjectsHeader, addProjectButton);
+sideBarTasks.append(
+  allTasksContainer,
+  todayTasksContainer,
+  next7DaysTasksContainer,
+  importantTasksContainer
+);
+
+// FOOTER
+const footer = document.createElement("footer");
+footer.innerHTML = `<svg width="25px" height="25px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>github [#142]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-140.000000, -7559.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M94,7399 C99.523,7399 104,7403.59 104,7409.253 C104,7413.782 101.138,7417.624 97.167,7418.981 C96.66,7419.082 96.48,7418.762 96.48,7418.489 C96.48,7418.151 96.492,7417.047 96.492,7415.675 C96.492,7414.719 96.172,7414.095 95.813,7413.777 C98.04,7413.523 100.38,7412.656 100.38,7408.718 C100.38,7407.598 99.992,7406.684 99.35,7405.966 C99.454,7405.707 99.797,7404.664 99.252,7403.252 C99.252,7403.252 98.414,7402.977 96.505,7404.303 C95.706,7404.076 94.85,7403.962 94,7403.958 C93.15,7403.962 92.295,7404.076 91.497,7404.303 C89.586,7402.977 88.746,7403.252 88.746,7403.252 C88.203,7404.664 88.546,7405.707 88.649,7405.966 C88.01,7406.684 87.619,7407.598 87.619,7408.718 C87.619,7412.646 89.954,7413.526 92.175,7413.785 C91.889,7414.041 91.63,7414.493 91.54,7415.156 C90.97,7415.418 89.522,7415.871 88.63,7414.304 C88.63,7414.304 88.101,7413.319 87.097,7413.247 C87.097,7413.247 86.122,7413.234 87.029,7413.87 C87.029,7413.87 87.684,7414.185 88.139,7415.37 C88.139,7415.37 88.726,7417.2 91.508,7416.58 C91.513,7417.437 91.522,7418.245 91.522,7418.489 C91.522,7418.76 91.338,7419.077 90.839,7418.982 C86.865,7417.627 84,7413.783 84,7409.253 C84,7403.59 88.478,7399 94,7399" id="github-[#142]"> </path> </g> </g> </g> </g></svg>`;
+const copyright = document.createElement("p");
+copyright.innerHTML = "© 2021 GogglesTv";
+footer.append(copyright);
+// HEADER AND BODY ELEMENTS APPENDED TO CONTAINER
+container.append(navBar, bodySection, footer);
