@@ -35,3 +35,13 @@ footer.append(createFooter());
 
 // HEADER AND BODY ELEMENTS APPENDED TO CONTAINER
 container.append(navBar, bodySection, footer);
+
+hamburgerIcon.addEventListener("click", () => {
+  if (sidebarAppended === true) {
+    bodySection.removeChild(sidebar);
+    sidebarAppended = false;
+  } else {
+    bodySection.append(sidebar);
+    sidebarAppended = true;
+  }
+});
