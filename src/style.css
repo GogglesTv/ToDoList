@@ -9,7 +9,7 @@ div#content {
   background-color: #d1d5db;
 }
 
-header {
+div.header-contents {
   border-bottom: 3px solid #0ea5e9;
   display: flex;
   justify-content: space-between;
@@ -18,22 +18,26 @@ header {
   height: 10vh;
 }
 
-header > div:nth-child(2) > div:first-child {
+div.header-contents > div:first-child:hover {
+  cursor: pointer;
+}
+
+div.header-contents > div:nth-child(2) > div:first-child {
   margin-bottom: -6px;
   color: #0ea5e9;
 }
 
-header > div:nth-child(2) {
+div.header-contents > div:nth-child(2) {
   display: flex;
   align-items: center;
 }
 
-header > div > p {
+div.header-contents > div > p {
   font-size: 3rem;
   font-weight: 700;
 }
 
-header > div > p:last-child {
+div.header-contents > div > p:last-child {
   color: #0ea5e9;
 }
 
