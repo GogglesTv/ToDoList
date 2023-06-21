@@ -1,4 +1,12 @@
 import "./style.css";
+import {
+  hamburger,
+  inbox,
+  todayArrow,
+  dateNumber,
+  star,
+  addIcon,
+} from "./images";
 
 // SIDEBAR CONTAINER
 const sidebarElements = document.createElement("div");
@@ -8,6 +16,7 @@ const allTasksContainer = document.createElement("div");
 const todayTasksContainer = document.createElement("div");
 const next7DaysTasksContainer = document.createElement("div");
 const importantTasksContainer = document.createElement("div");
+const sidebarProjectsContainer = document.createElement("section");
 const addProjectButton = document.createElement("div");
 
 function createSidebar() {
@@ -21,45 +30,31 @@ function createSidebar() {
   const sideBarTasks = document.createElement("div");
   sideBarTasks.classList.add("sidebar-tasks");
 
-  const allTasksImg = document.createElement("img");
-  allTasksImg.setAttribute("src", "../images/inbox.png");
   const allTasks = document.createElement("p");
   allTasks.innerHTML = "All Tasks";
-  allTasksContainer.append(allTasksImg, allTasks);
+  allTasksContainer.append(inbox, allTasks);
 
-  const todayTasksImg = document.createElement("img");
-  todayTasksImg.setAttribute("src", "../images/today-arrow.png");
   const todayTasks = document.createElement("p");
   todayTasks.innerHTML = "Today";
-  todayTasksContainer.append(todayTasksImg, todayTasks);
+  todayTasksContainer.append(todayArrow, todayTasks);
 
-  const next7DaysTasksImg = document.createElement("img");
-  next7DaysTasksImg.setAttribute("src", "../images/date-number.png");
   const next7DaysTasks = document.createElement("p");
   next7DaysTasks.innerHTML = "Next 7 Days";
-  next7DaysTasksContainer.append(next7DaysTasksImg, next7DaysTasks);
+  next7DaysTasksContainer.append(dateNumber, next7DaysTasks);
 
-  const importantTasksImg = document.createElement("img");
-  importantTasksImg.setAttribute("src", "../images/star.png");
   const importantTasks = document.createElement("p");
   importantTasks.innerHTML = "Important";
-  importantTasksContainer.append(importantTasksImg, importantTasks);
+  importantTasksContainer.append(star, importantTasks);
 
   // SIDEBAR: PROJECTS
-  const sidebarProjectsContainer = document.createElement("section");
   sidebarProjectsContainer.classList.add("sidebar-projects");
 
   const sidebarProjectsHeader = document.createElement("h1");
   sidebarProjectsHeader.innerHTML = "Projects";
 
-  const newProjects = document.createElement("div");
-  newProjects.classList.add("new-projects");
-
   addProjectButton.classList.add("add-project");
   addProjectButton.innerHTML = "Add Project";
-  const add = document.createElement("div");
-  add.innerHTML = `<svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Edit / Add_Plus_Circle"> <path id="Vector" d="M8 12H12M12 12H16M12 12V16M12 12V8M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg>`;
-  addProjectButton.append(add);
+  addProjectButton.append(addIcon);
 
   sidebarElements.append(sidebarHomeContainer, sidebarProjectsContainer);
   sidebarHomeContainer.append(sidebarHomeHeader, sideBarTasks);
@@ -72,6 +67,40 @@ function createSidebar() {
   );
 }
 
+const newProjectForm = document.createElement("section");
+const input = document.createElement("input");
+
+const addCancelBtns = document.createElement("div");
+const addBtn = document.createElement("button");
+const cancelBtn = document.createElement("button");
+
+function createProjectForm() {
+  newProjectForm.classList.add("project-form");
+
+  const formTop = document.createElement("div");
+  formTop.classList.add("form-top");
+  const label = document.createElement("label");
+  label.setAttribute("for", "newProject");
+  input.setAttribute("type", "text");
+  input.setAttribute("id", "newProject");
+  input.setAttribute("name", "newProject");
+  input.setAttribute("placeholder", "Enter Project Name");
+
+  const formBottom = document.createElement("div");
+  formBottom.classList.add("form-bottom");
+  addCancelBtns.classList.add("add-cancel");
+  addBtn.classList.add("add-btn");
+  addBtn.innerHTML = "Add";
+  cancelBtn.classList.add("cancel-btn");
+  cancelBtn.innerHTML = "Cancel";
+
+  newProjectForm.append(formTop, formBottom);
+  formTop.append(hamburger, label);
+  label.append(input);
+  formBottom.append(addCancelBtns);
+  addCancelBtns.append(addBtn, cancelBtn);
+}
+
 export {
   sidebarElements,
   createSidebar,
@@ -79,5 +108,11 @@ export {
   todayTasksContainer,
   next7DaysTasksContainer,
   importantTasksContainer,
+  sidebarProjectsContainer,
   addProjectButton,
+  newProjectForm,
+  input,
+  createProjectForm,
+  addBtn,
+  cancelBtn,
 };
