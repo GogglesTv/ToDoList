@@ -5,6 +5,44 @@
   font-family: "Noto Sans Display", sans-serif;
 }
 
+/* HEADER AND FOOTER IMAGES/ICONS */
+.hamburger {
+  width: 20px;
+  height: 20px;
+}
+
+.three-dots {
+  width: 20px;
+  height: 20px;
+}
+
+.checkmark {
+  width: 35px;
+  height: 35px;
+}
+
+.sun {
+  width: 25px;
+  height: 25px;
+}
+
+.moon {
+  width: 22px;
+  height: 22px;
+}
+
+.github-logo {
+  width: 25px;
+  height: 25px;
+}
+
+.add-icon {
+  width: 30px;
+  height: 30px;
+}
+
+/* END OF IMAGES */
+
 div#content {
   background-color: #d1d5db;
 }
@@ -45,7 +83,7 @@ div.header-contents > div > p:last-child {
   margin-bottom: 25px;
 }
 
-label {
+label.screen-mode {
   width: 65px;
   height: 35px;
   position: relative;
@@ -57,7 +95,7 @@ label {
   transition: 1s;
 }
 
-label:after {
+div.toggle > label:after {
   content: "";
   width: 20px;
   height: 20px;
@@ -70,25 +108,21 @@ label:after {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-input {
+div.toggle > input {
   width: 0;
   height: 0;
   visibility: hidden;
 }
 
-input:checked + label {
+div.toggle > input:checked + div.toggle > label {
   background: #242424;
 }
 
-input:checked + label:after {
-  right: 100px;
-  transform: translateX(-140%);
+div.toggle > input:checked + div.toggle > label:after {
+  right: 500px;
+  transform: translateX(100%);
   background: linear-gradient(180deg, #777, #3a3a3a);
 }
-
-/* label:active::after {
-  width: 50px;
-} */
 
 #content {
   background: #000000;
@@ -96,36 +130,34 @@ input:checked + label:after {
   transition: 0.3s;
 }
 
-input:checked + label + #content {
+div.toggle > input:checked + div.toggle > label + #content {
   background: #242424;
 }
 
-label svg {
+label img {
   position: absolute;
   width: 120px;
   top: 2px;
   z-index: 100;
 }
 
-label svg.sun {
-  left: -42px;
-  fill: #fbbf24;
+label img.sun {
   transition: 0.3s;
 }
 
-label svg.moon {
+label img.moon {
   top: 5px;
-  left: -18px;
+  right: 0;
   fill: #089cff;
   transition: 0.3s;
   display: none;
 }
 
-input:checked + label svg.sun {
+indiv.toggle > put.se:checked + label img.sun {
   display: none;
 }
 
-input:checked + label svg.moon {
+div.toggle > input:checked + label img.moon {
   display: block;
 }
 
@@ -133,7 +165,7 @@ section.body-section {
   height: 90vh;
 }
 
-/* SIDEBAR STYLES */
+/* SIDEBAR */
 .sidebar {
   width: calc(25rem - 0.5vw);
   background-color: white;
@@ -154,10 +186,16 @@ section.body-section {
 }
 
 .sidebar-tasks > div {
-  margin: 15px 0;
-  margin-left: 20px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
+  height: 35px;
+}
+
+.sidebar-tasks > div:hover {
+  background-color: #e5e5e5;
+  cursor: pointer;
 }
 
 .sidebar img {
@@ -167,7 +205,7 @@ section.body-section {
 }
 
 .sidebar-tasks > div > p {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -188,18 +226,133 @@ section.body-section {
   font-weight: 600;
   padding: 10px 20px;
   transition: 0.3s ease-in-out;
+  /* margin-top: 10px; */
 }
 
-.sidebar-projects > div.add-project:hover {
+/* div.project-form {
+  overflow: hidden;
+
+  line-height: 100px;
+  transition: all 1s ease-in-out;
+  transform-origin: left top;
+  transform: scaleY(0);
+}
+
+div.project-form:target {
+  transform: scaleY(1);
+} */
+
+.sidebar-projects > div.add-project > div {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-projects > div.add-project:hover,
+.sidebar-projects > section.project-form:hover {
   cursor: pointer;
   background-color: #e5e5e5;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 
-.sidebar-projects > div > div {
-  padding-right: 30px;
+.sidebar-projects > div > img.add-icon {
+  margin-right: 30px;
 }
 
+.sidebar-projects > section.project-form {
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
+.form-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.form-top > div {
+  margin-right: 5px;
+}
+
+.form-top > div:last-child {
+  width: 100%;
+  height: 30px;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.form-top > label > input {
+  box-sizing: border-box;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  width: 275px;
+  height: 40px;
+  padding: 15px 5px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+div.add-cancel {
+  display: flex;
+  justify-content: center;
+}
+
+button.add-btn,
+button.cancel-btn {
+  width: 75px;
+  height: 30px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+}
+
+button.add-btn {
+  margin-right: 10px;
+}
+
+button.add-btn {
+  background-color: #089cff;
+}
+
+button.cancel-btn {
+  background-color: rgb(214, 1, 1);
+}
+
+/* NEW PROJECT  */
+.new-project {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  height: 45px;
+  background-color: #8fd2ff;
+  padding: 0 20px;
+  border-left: 3px solid #0285dd;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.new-project > div:first-child {
+  margin-right: 10px;
+  display: flex;
+}
+
+.new-project > div:first-child > div {
+  margin-right: 10px;
+}
+
+.new-project > div.dots-icon {
+  float: right;
+}
+
+/* FOOTER */
 footer {
   display: flex;
   justify-content: center;
