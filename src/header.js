@@ -31,4 +31,4 @@ function createHeader() {
   headerContents.append(hamburgerIcon, pageTitle, screenMode);
 }
 
-export { headerContents, createHeader };
+export { hamburgerIcon, headerContents, createHeader };
