@@ -33,6 +33,8 @@ function createSidebar() {
   const allTasks = document.createElement("p");
   allTasks.innerHTML = "All Tasks";
   allTasksContainer.append(inbox, allTasks);
+  allTasksContainer.style.backgroundColor = "#8fd2ff";
+  allTasksContainer.style.borderLeft = "3px solid #0285dd";
 
   const todayTasks = document.createElement("p");
   todayTasks.innerHTML = "Today";

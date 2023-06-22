@@ -16,6 +16,7 @@ import {
   addBtn,
   cancelBtn,
 } from "./sidebar.js";
+import { taskContents, createTaskElements } from "./tasks";
 import { footer, createFooter } from "./footer";
 import { hamburger, threeVertDots } from "./images";
 
@@ -37,9 +38,11 @@ bodySection.classList.add("body-section");
 // SIDEBAR
 createSidebar();
 let sidebarAppended = true;
-const sidebar = document.createElement("section");
-sidebar.append(sidebarElements);
-bodySection.append(sidebar);
+bodySection.append(sidebarElements);
+
+// TASKS
+createTaskElements();
+bodySection.append(taskContents);
 
 // FOOTER
 footer.append(createFooter());
