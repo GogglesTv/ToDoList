@@ -13,18 +13,23 @@ import {
   newProjectForm,
   input,
   createProjectForm,
-  addBtn,
-  cancelBtn,
+  addProject,
+  cancelProject,
 } from "./sidebar.js";
-import { taskContents, createTaskElements } from "./tasks";
+import {
+  toDo,
+  newProjects,
+  taskContents,
+  initialPage,
+  taskHeader,
+  tasks,
+  newProjectTab,
+  projects,
+} from "./tasks";
 import { footer, createFooter } from "./footer";
 import { hamburger, threeVertDots } from "./images";
 
 const container = document.getElementById("content");
-
-const projects = [];
-const newProjects = document.createElement("section");
-newProjects.classList.add("new-projects");
 
 // HEADER
 createHeader();
@@ -41,7 +46,8 @@ let sidebarAppended = true;
 bodySection.append(sidebarElements);
 
 // TASKS
-createTaskElements();
+
+initialPage();
 bodySection.append(taskContents);
 
 // FOOTER
@@ -61,6 +67,46 @@ hamburgerIcon.addEventListener("click", () => {
   }
 });
 
+allTasksContainer.addEventListener("click", () => {
+  taskGroupHighlight(allTasksContainer);
+  taskGroupUnhighlight(
+    todayTasksContainer,
+    next7DaysTasksContainer,
+    importantTasksContainer
+  );
+  taskHeader.innerHTML = "All Tasks";
+});
+
+todayTasksContainer.addEventListener("click", () => {
+  taskGroupHighlight(todayTasksContainer);
+  taskGroupUnhighlight(
+    allTasksContainer,
+    next7DaysTasksContainer,
+    importantTasksContainer
+  );
+  taskHeader.innerHTML = "Today";
+});
+
+next7DaysTasksContainer.addEventListener("click", () => {
+  taskGroupHighlight(next7DaysTasksContainer);
+  taskGroupUnhighlight(
+    allTasksContainer,
+    todayTasksContainer,
+    importantTasksContainer
+  );
+  taskHeader.innerHTML = "Next 7 Days";
+});
+
+importantTasksContainer.addEventListener("click", () => {
+  taskGroupHighlight(importantTasksContainer);
+  taskGroupUnhighlight(
+    allTasksContainer,
+    todayTasksContainer,
+    next7DaysTasksContainer
+  );
+  taskHeader.innerHTML = "Important";
+});
+
 createProjectForm();
 addProjectButton.addEventListener("click", () => {
   if (!sidebarProjectsContainer.contains(newProjectForm)) {
@@ -76,34 +122,10 @@ addProjectButton.addEventListener("click", () => {
   console.log(input.value);
 });
 
-addBtn.addEventListener("click", () => {
+addProject.addEventListener("click", () => {
   if (input.value !== "") {
-    projects.push(input.value);
+    newProjectTab();
     sidebarProjectsContainer.removeChild(newProjectForm);
-  }
-  newProjects.innerHTML = "";
-
-  // CREATES ELEMENTS FOR NEW PROJECT
-  for (let i = 0; i <= projects.length - 1; i++) {
-    const newProject = document.createElement("div");
-    newProject.classList.add("new-project");
-
-    const projectNameLeft = document.createElement("div");
-    const hamburgerIcon2 = document.createElement("div");
-    hamburgerIcon2.innerHTML = hamburger.innerHTML;
-    hamburgerIcon2.classList.add("hamburger");
-    const newProjectName = document.createElement("p");
-    newProjectName.innerHTML = projects[i];
-
-    const projectNameRight = document.createElement("div");
-    const dotsIcon = document.createElement("div");
-    dotsIcon.classList.add("dots-icon");
-    dotsIcon.innerHTML = threeVertDots.innerHTML;
-
-    newProjects.append(newProject);
-    newProject.append(projectNameLeft, projectNameRight);
-    projectNameLeft.append(hamburgerIcon2, newProjectName);
-    projectNameRight.append(dotsIcon);
     sidebarProjectsContainer.append(newProjects, addProjectButton);
   }
 
@@ -111,8 +133,30 @@ addBtn.addEventListener("click", () => {
   console.log("project added", projects);
 });
 
-cancelBtn.addEventListener("click", () => {
+cancelProject.addEventListener("click", () => {
   sidebarProjectsContainer.removeChild(newProjectForm);
 });
 
-console.log();
+function taskGroupHighlight(group) {
+  group.style.backgroundColor = "#8fd2ff";
+  group.style.borderLeft = "3px solid #0285dd";
+  group.style.borderTopRightRadius = "5px";
+  group.style.borderBottomRightRadius = "5px";
+}
+
+function taskGroupUnhighlight(group1, group2, group3) {
+  group1.style.backgroundColor = "";
+  group1.style.borderLeft = "";
+  group1.style.borderTopRightRadius = "";
+  group1.style.borderBottomRightRadius = "";
+
+  group2.style.backgroundColor = "";
+  group2.style.borderLeft = "";
+  group2.style.borderTopRightRadius = "";
+  group2.style.borderBottomRightRadius = "";
+
+  group3.style.backgroundColor = "";
+  group3.style.borderLeft = "";
+  group3.style.borderTopRightRadius = "";
+  group3.style.borderBottomRightRadius = "";
+}
