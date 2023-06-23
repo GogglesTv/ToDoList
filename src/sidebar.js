@@ -16,6 +16,7 @@ const allTasksContainer = document.createElement("div");
 const todayTasksContainer = document.createElement("div");
 const next7DaysTasksContainer = document.createElement("div");
 const importantTasksContainer = document.createElement("div");
+
 const sidebarProjectsContainer = document.createElement("section");
 const addProjectButton = document.createElement("div");
 
@@ -35,6 +36,8 @@ function createSidebar() {
   allTasksContainer.append(inbox, allTasks);
   allTasksContainer.style.backgroundColor = "#8fd2ff";
   allTasksContainer.style.borderLeft = "3px solid #0285dd";
+  allTasksContainer.style.borderTopRightRadius = "5px";
+  allTasksContainer.style.borderBottomRightRadius = "5px";
 
   const todayTasks = document.createElement("p");
   todayTasks.innerHTML = "Today";
@@ -73,8 +76,8 @@ const newProjectForm = document.createElement("section");
 const input = document.createElement("input");
 
 const addCancelBtns = document.createElement("div");
-const addBtn = document.createElement("button");
-const cancelBtn = document.createElement("button");
+const addProject = document.createElement("button");
+const cancelProject = document.createElement("button");
 
 function createProjectForm() {
   newProjectForm.classList.add("project-form");
@@ -91,16 +94,16 @@ function createProjectForm() {
   const formBottom = document.createElement("div");
   formBottom.classList.add("form-bottom");
   addCancelBtns.classList.add("add-cancel");
-  addBtn.classList.add("add-btn");
-  addBtn.innerHTML = "Add";
-  cancelBtn.classList.add("cancel-btn");
-  cancelBtn.innerHTML = "Cancel";
+  addProject.classList.add("add-btn");
+  addProject.innerHTML = "Add";
+  cancelProject.classList.add("cancel-btn");
+  cancelProject.innerHTML = "Cancel";
 
   newProjectForm.append(formTop, formBottom);
   formTop.append(hamburger, label);
   label.append(input);
   formBottom.append(addCancelBtns);
-  addCancelBtns.append(addBtn, cancelBtn);
+  addCancelBtns.append(addProject, cancelProject);
 }
 
 export {
@@ -115,6 +118,6 @@ export {
   newProjectForm,
   input,
   createProjectForm,
-  addBtn,
-  cancelBtn,
+  addProject,
+  cancelProject,
 };
